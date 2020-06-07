@@ -9,5 +9,5 @@ xcrun xcodebuild archive -project DemoCi.xcodeproj -scheme DemoCi -configuration
 echo "打包结束"
 
 echo "开始导出"
-xcrun xcodebuild -exportArchive -archivePath ./scripts/build/build.xcarchive -exportPath ./build -exportOptionsPlist ExportOptions.plist
+xcrun xcodebuild -exportArchive -archivePath ./scripts/build.xcarchive -exportPath ./scripts/build -exportOptionsPlist ExportOptions.plist
 echo "导出结束"
