@@ -5,11 +5,9 @@ echo "开始打包"
 
 # archive_command = 'xcodebuild archive -workspace %s/%s.xcworkspace -scheme %s -configuration Release -archivePath %s/%s' % (
 
-xcrun xcodebuild archive -project DemoCi.xcodeproj -scheme DemoCi \
-  -archivePath DemoCi.xcarchive
+xcrun xcodebuild archive -project DemoCi.xcodeproj -scheme DemoCi -configuration Release -archivePath ./scripts/build
 echo "打包结束"
 
-echo "开始签名"
-xcrun xcodebuild -exportArchive -archivePath DemoCi.xcarchive \
-  -exportPath ./build -exportOptionsPlist ExportOptions.plist
-echo "签名结束"
+echo "开始导出"
+xcrun xcodebuild -exportArchive -archivePath ./scripts/build/build.xcarchive -exportPath ./build -exportOptionsPlist ExportOptions.plist
+echo "导出结束"
