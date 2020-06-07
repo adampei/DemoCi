@@ -16,10 +16,10 @@ before_install:
 - wget -c https://raw.githubusercontent.com/Pgyer/TravisFile/master/pgyer_upload.sh
   -O pgyer_upload.sh
 - chmod +x pgyer_upload.sh
-- chmod +x ./scripts/add-key.sh
-- chmod +x ./scripts/upload.sh
-- chmod +x ./scripts/remove-key.sh
-- chmod +x ./scripts/build.sh
+- chmod +x add-key.sh
+- chmod +x upload.sh
+- chmod +x remove-key.sh
+- chmod +x build.sh
 
 before_script:
 - "./scripts/add-key.sh"
