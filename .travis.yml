@@ -21,6 +21,7 @@ before_install:
 - chmod +x remove-key.sh
 - chmod +x build.sh
 
+- cd ..
 before_script:
 - "./scripts/add-key.sh"
 script:
