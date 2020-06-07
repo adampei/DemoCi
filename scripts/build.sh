@@ -14,3 +14,10 @@ echo "导出结束"
 echo "查看build目录 ls ./scripts/build "
 ls ./scripts/build
 echo "build目录查看结束"
+
+#path_ipa=$(pwd)/scripts/build
+#
+#
+#
+#curl -F "file=@/$path_ipa/$APPNAME.ipa" -F "uKey=3f878d3cd17199c9b2ea54513b885f28" -F "_api_key=64b07d6a2da9902db04e3b93cd9968da" https://upload.pgyer.com/apiv1/app/upload
+
