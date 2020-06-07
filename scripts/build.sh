@@ -11,6 +11,6 @@ echo "打包结束"
 echo "开始导出"
 xcrun xcodebuild -exportArchive -archivePath ./scripts/build.xcarchive -exportPath ./scripts/build -exportOptionsPlist ExportOptions.plist
 echo "导出结束"
-echo "查看build目录"
+echo "查看build目录 ls ./scripts/build "
 ls ./scripts/build
 echo "build目录查看结束"
