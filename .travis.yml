@@ -1,4 +1,31 @@
 language: objective-c
 osx_image: xcode11.5
+env:
+  global:
+  - APP_NAME="DemoCi"
+  - 'DEVELOPER_NAME="iPhone Distribution: 波波 裴(49YDWUASFN)"'
+  - PROFILE_NAME="TravisCIADHoc"
+  - secure: N7feO+Ma+mU86HdsmT15R999rGT2QQC/d/SDQ3XJP+ZIztCtaf2Fu1G+x+QuIc4nqr4rcqupHm0G68yQ7ufcRw6C+GInwLjqTjNPoODojxNW/lw9M+TIBSWDVlGU2FHaaWfuq1zFyRGWylFipjJ3kXFpMyYlu6AWKlOCal4WJT+4b+8ZFRlSwDDm7RCyLf7y/CU+b3oATgGgqbZKMXoOaR3RPId9g/RYu1ZEsYdDvxYuhwiR3Kxx8nykzrmpQTNl9FNYjjVtCrWY1eZpelhgTsMYPjhncQnW4WhdCXQ3RZmH5Y5FdKHXfaR5ODjpR0wacxxBA03/EJfBR/R109FsNULgD+dZiHActLXcLZWver/VcTQwBgPraCPb1TTN/7b8F2/+k1pDTZ2+CwUqhowauKHcHNnSwvIkKUiNqe2utOus3aK0OyTzFUDoCry8CZwupq8OAlR9/uRWKAP6EBgwvbQmkArJDlm5zxbaalVMU7XX6Of/8Hl8724YWeeO1opjSncmVuiF+No1Rla0ACVpB/CBfOeSB4avVlvOT6jy8Yp3taQiKkNmOyh5i7jXdZiM1TI1Uk00hjVD3VJ6qp5dnECTlqxJZ80ZySeIgQkxfoj0FEZfV01z7upTgJvj9wclaYZUIKDbqTvBltVywSisTxs3xfESQJ75dtHdCn5DxwY=
+  - secure: Jv26UzWFMpsmnfONCDCZEGjWBSn4DfJ3yv4L7irKOe5VVBmmePGNLvsb8wTgpBZto51w9mU9sdCo6Q43peu7xgAFMAoknpA0ztq1WQNbPpoZKVG711AfRB96EqZFMiGn7FX9TxE5FqHH5ndK7CmM627iG5KMzpvuT+uQF8uCW0N+EtZ0shIldFQCq6ckQhvD8cMEAomFVUflALaQ5a60/rbbZgQznyOt+T08vL7IJbYqlb+ienjGe1boSTGuV09SBQyDpPHJ5mE8ejMJGLHw858pSJwwTPwbWUNqsLzL9nak+f1GI9S2nflLIgwuXgRJVzg/B2hAcD1PoyZfDLpMY2pCJOloECn1Diruug+AZukz8WGuMcPppbK+7/pOgKPZREesOLZiZshtE+uE+98CEcmsFgJmHYA203koN7KfyuVxP6ldU0aZvGV3HfCnDVdd46UYr3WQISUDV768NrTNLO7fzw0w49oJKrgJyL0+1ya4CEjha6MNSAQIEUKxcdQsWkm1pqfsKH3lwXhUeH3PXrkGg+jZWpHAQZwj/8s86TASUvpXgtFZrAp6Zov33bRDkNZqqYs03I9ybL41iwLlHnBR5J2TWwnJ3q0UDg2rasbtC3Rd96VaxUNTRJxlU2dLVCiF+XTS4ASah3PKF1W60CJKEeNkHh3BT/Z8hzk+uGQ=
+  
+  
+
+before_install:
+
+- cd scripts/
+- wget -c https://raw.githubusercontent.com/Pgyer/TravisFile/master/pgyer_upload.sh
+  -O pgyer_upload.sh
+- chmod +x pgyer_upload.sh
+- chmod +x ./scripts/add-key.sh
+- chmod +x ./scripts/upload.sh
+- chmod +x ./scripts/remove-key.sh
+- chmod +x ./scripts/build.sh
+
+before_script:
+- "./scripts/add-key.sh"
 script:
-- xctool -workspace $DemoCi.xcworkspace -scheme $DemoCi -sdk iphoneos  -configuration Release OBJROOT=$PWD/build SYMROOT=$PWD/build ONLY_ACTIVE_ARCH=NO CODE_SIGN_IDENTITY="$DEVELOPER_NAME"
+- "./scripts/build.sh"
+after_success:
+- "./scripts/upload.sh"
+after_script:
+- "./scripts/remove-key.sh"
